@@ -6,3 +6,4 @@
 - 4. redux版todos
 - 5. combineReducers
 - 6. context
+- 7. react-redux
