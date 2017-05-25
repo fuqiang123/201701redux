@@ -1,27 +1,10 @@
 import React from 'react';
-import {createStore} from '../redux';
-const ADD_TODO = 'ADD_TODO';//这是action的类型 增加todo
-const DELETE_TODO = 'DELETE_TODO'; //删除todo
-let reducer = (state={list:[]},action)=>{
-   if(action === undefined) return state;
-   switch (action.type){
-       case ADD_TODO:
-            return {list:[...state.list,action.text]};
-       case  DELETE_TODO:
-           let list = state.list;
-           list.splice(action.index,1);
-           //我们的状态具有不变性，每次都要返回一个新的对象
-           return {list:[...list]};
-       default:
-           return state;
-   }
-}
-let store = createStore(reducer);
-
+import {store} from '../store';
+import {ADD_TODO,DELETE_TODO} from '../actions';
 export default class Todo extends React.Component{
     constructor(props){
         super(props);
-        this.state = {list:store.getState().list};
+        this.state = {list:store.getState().todo.list};
     }
     handleKeyDown = (event)=>{
       if(event.keyCode === 13 && event.target.value.length>0){
@@ -42,7 +25,7 @@ export default class Todo extends React.Component{
     componentWillMount(){
         this.unSubscribe = store.subscribe(()=>{
             this.setState({
-                list:store.getState().list
+                list:store.getState().todo.list
             });
         })
     }
