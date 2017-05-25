@@ -10,6 +10,7 @@ const createStore = (reducer)=>{
    let dispatch = (action)=>{
        //传入老的state和action,返回新的state
         state = reducer(state,action);
+        //依次调用所有的订阅函数
        listeners.forEach(listener=>listener())
    }
    //订阅仓库内的状态变化事件，当状态发生变化之后会调用对应的监听函数
