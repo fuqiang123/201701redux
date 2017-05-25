@@ -5,3 +5,4 @@
 - 3. redux+react应用
 - 4. redux版todos
 - 5. combineReducers
+- 6. context
